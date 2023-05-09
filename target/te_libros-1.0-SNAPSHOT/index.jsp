@@ -29,7 +29,7 @@
                     <td>${item.titulo}</td>
                     <td>${item.categoria}</td>
                     <td>
-                        <a href="MainController?op=eliminar&id=${item.id}" onclick="return('Esta seguro de eliminar?')">Eliminar</a>
+                        <a href="MainController?op=eliminar&id=${item.id}" onclick="return(confirm('Esta seguro de eliminar?'))">Eliminar</a>
                     </td>
                 </tr>
             </c:forEach>

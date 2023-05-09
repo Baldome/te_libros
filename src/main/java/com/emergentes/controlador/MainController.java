@@ -107,7 +107,8 @@ public class MainController extends HttpServlet {
                 ps.setString(3, lib.getCategoria());
 
                 ps.executeUpdate();
-                //request.getRequestDispatcher("index.jsp").forward(request, response);
+                
+                response.sendRedirect("MainController");
             }
         } catch (SQLException ex) {
             System.out.println("Error en SQL " + ex.getMessage());
