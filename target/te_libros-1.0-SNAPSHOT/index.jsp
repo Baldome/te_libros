@@ -14,13 +14,13 @@
     <body>
         <h1>Listado de libros</h1>
         <p><a href="MainController?op=nuevo">Nuevo</a></p>
-        <table border="1">
+        <table border="2" cellspacing="0" cellpadding="10">
             <tr>
                 <th>Id</th>
                 <th>ISBN</th>
                 <th>Título</th>
                 <th>Categoria</th>
-                <th></th>
+                <th colspan="2">Acciones</th>
             </tr>
             <c:forEach var="item" items="${lista}">
                 <tr>
@@ -28,6 +28,9 @@
                     <td>${item.isbn}</td>
                     <td>${item.titulo}</td>
                     <td>${item.categoria}</td>
+                    <td>
+                        <a href="MainController?op=editar&id=${item.id}">Editar</a>
+                    </td>
                     <td>
                         <a href="MainController?op=eliminar&id=${item.id}" onclick="return(confirm('Esta seguro de eliminar?'))">Eliminar</a>
                     </td>

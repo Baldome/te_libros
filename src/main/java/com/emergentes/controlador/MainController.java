@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "MainController", urlPatterns = {"/MainController"})
 public class MainController extends HttpServlet {
@@ -53,10 +54,29 @@ public class MainController extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
 
+            Libro li = new Libro();
+
             if (op.equals("nuevo")) {
                 //nuevo registro
-                Libro li = new Libro();
+                request.setAttribute("lib", li);
+                request.getRequestDispatcher("editar.jsp").forward(request, response);
+            }
 
+            if (op.equals("editar")) {
+                //editar registro
+                int id = Integer.parseInt(request.getParameter("id"));
+                String sql = "select * from libros where id = ?";
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, id);
+
+                rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    li.setId(rs.getInt("id"));
+                    li.setIsbn(rs.getString("isbn"));
+                    li.setTitulo(rs.getString("titulo"));
+                    li.setCategoria(rs.getString("categoria"));
+                }
                 request.setAttribute("lib", li);
                 request.getRequestDispatcher("editar.jsp").forward(request, response);
             }
@@ -107,7 +127,20 @@ public class MainController extends HttpServlet {
                 ps.setString(3, lib.getCategoria());
 
                 ps.executeUpdate();
-                
+
+                response.sendRedirect("MainController");
+            } else {
+                //editar registro
+                String sql = "update libros set isbn=?, titulo=?, categoria=? where id=?";
+
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, lib.getIsbn());
+                ps.setString(2, lib.getTitulo());
+                ps.setString(3, lib.getCategoria());
+                ps.setInt(4, lib.getId());
+
+                ps.executeUpdate();
+
                 response.sendRedirect("MainController");
             }
         } catch (SQLException ex) {

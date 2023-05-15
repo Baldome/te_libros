@@ -11,7 +11,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Nuevo libro</h1>
+        <h1><%= (lib.getId() == 0) ? "Nuevo " : "Editar " %> registro libro</h1>
         <form action="MainController" method="post">
             <input type="hidden" name="id" value="${lib.id}">
             <table>
