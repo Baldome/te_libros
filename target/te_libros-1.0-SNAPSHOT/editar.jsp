@@ -21,19 +21,19 @@
                         <div class="mb-3 row">
                             <label for="isbn" class="col-sm-2 col-form-label">ISBN</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="isbn" value="${lib.isbn}">
+                                <input type="text" name="isbn" class="form-control" id="isbn" value="${lib.isbn}">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="titulo" class="col-sm-2 col-form-label">Título</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="titulo" value="${lib.titulo}">
+                                <input type="text" name="titulo" class="form-control" id="titulo" value="${lib.titulo}">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="categoria" value="${lib.categoria}">
+                                <input type="text" name="categoria" class="form-control" id="categoria" value="${lib.categoria}">
                             </div>
                         </div>
                             <input type="submit" class="btn btn-primary">
